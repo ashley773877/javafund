@@ -59,8 +59,18 @@ const courseInfo = {
             const latePenalty = 0.1 * assignment.points_possible;
             submission.submission.score = Math.max(0, submission.submission.score - latePenalty);
           } else {
-            continue; // Skip this submission as it's not yet due
+            continue; 
           }
+
+          const percentageScore = (submission.submission.score / assignment.points_possible) * 100;
+
+          // Initialize learner data if not present
+          if (!result[learnerId]) {
+            result[learnerId] = {
+              "id": learnerId,
+              "avg": 0,
+            };
+          }   
 
 
 
