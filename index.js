@@ -170,18 +170,54 @@ const courseInfo = {
         }
         const result = [];
 
-        // Iterate over learner submissions
+      
         for (const submission of submissions) {
           const learnerId = submission.learner_id;
           const assignmentId = submission.assignment_id;
       
-          // Find the assignment in the assignment group
+
           const assignment = assignmentGroup.assignments.find(a => a.id === assignmentId);
       
           if (!assignment) {
             console.error(`Assignment with ID ${assignmentId} not found in the assignment group.`);
-            continue; // Skip this submission
-          }      
+            continue; 
+          }   
+          const dueDate = new Date(assignment.due_at);
+          const currentDate = new Date();
+      
+          if (currentDate > dueDate) {
+            const latePenalty = 0.1 * assignment.points_possible;
+            submission.submission.score = Math.max(0, submission.submission.score - latePenalty);
+          } else {
+            continue; 
+          }
+      
+          const percentageScore = (submission.submission.score / assignment.points_possible) * 100;
+          if (!result[learnerId]) {
+            result[learnerId] = {
+              "id": learnerId,
+              "avg": 0,
+            };
+          }
+      
+          result[learnerId][assignmentId] = percentageScore;
+      
+          result[learnerId].avg += (percentageScore * assignmentGroup.group_weight) / 100;
+        }
+      
+        result.forEach(learnerData => {
+          learnerData.avg /= assignmentGroup.group_weight / 100;
+        });
+      
+        return result;
+      }
+      
+      try {
+        const result = getLearnerData(course, assignmentGroup, submissions);
+        console.log(result);
+      } catch (error) {
+        console.error(error.message);
+      }      
       
 
 
