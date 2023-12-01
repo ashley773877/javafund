@@ -164,10 +164,24 @@ const courseInfo = {
       ];
 
       function getLearnerData(course, assignmentGroup, submissions) {
-        // Validate course assignment group
+        
         if (assignmentGroup.course_id !== course.id) {
           throw new Error("Invalid input: Assignment group does not belong to the specified course.");
         }
+        const result = [];
+
+        // Iterate over learner submissions
+        for (const submission of submissions) {
+          const learnerId = submission.learner_id;
+          const assignmentId = submission.assignment_id;
+      
+          // Find the assignment in the assignment group
+          const assignment = assignmentGroup.assignments.find(a => a.id === assignmentId);
+      
+          if (!assignment) {
+            console.error(`Assignment with ID ${assignmentId} not found in the assignment group.`);
+            continue; // Skip this submission
+          }      
       
 
 
