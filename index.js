@@ -20,3 +20,15 @@ const courseInfo = {
     ],
   };
 
+  const learnerSubmissions = [
+    {
+      "learner_id": 1,
+      "assignment_id": 101,
+      "submission": {
+        "submitted_at": "2023-12-14T18:00:00Z",
+        "score": 90,
+      },
+    },
+   
+  ];
+
