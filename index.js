@@ -55,7 +55,7 @@ const courseInfo = {
         const currentDate = new Date();
 
         if (currentDate > dueDate) {
-            // Deduct 10% if submission is late
+          
             const latePenalty = 0.1 * assignment.points_possible;
             submission.submission.score = Math.max(0, submission.submission.score - latePenalty);
           } else {
@@ -64,13 +64,34 @@ const courseInfo = {
 
           const percentageScore = (submission.submission.score / assignment.points_possible) * 100;
 
-          // Initialize learner data if not present
+          
           if (!result[learnerId]) {
             result[learnerId] = {
               "id": learnerId,
               "avg": 0,
             };
           }   
+          result[learnerId][assignmentId] = percentageScore;
+
+        
+          result[learnerId].avg += (percentageScore * assignmentGroup.group_weight) / 100;
+        }
+      
+       
+        result.forEach(learnerData => {
+          learnerData.avg /= assignmentGroup.group_weight / 100;
+        });
+      
+        return result;
+      }
+      
+     
+      try {
+        const result = analyzeData(courseInfo, assignmentGroup, learnerSubmissions);
+        console.log(result);
+      } catch (error) {
+        console.error(error.message);
+      }
 
 
 
