@@ -54,5 +54,13 @@ const courseInfo = {
         const dueDate = new Date(assignment.due_at);
         const currentDate = new Date();
 
+        if (currentDate > dueDate) {
+            // Deduct 10% if submission is late
+            const latePenalty = 0.1 * assignment.points_possible;
+            submission.submission.score = Math.max(0, submission.submission.score - latePenalty);
+          } else {
+            continue; // Skip this submission as it's not yet due
+          }
+
 
 
