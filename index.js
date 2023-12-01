@@ -4,7 +4,7 @@ const courseInfo = {
     "name": "Computer Science 101",
   };
 
-  const assignmentGroup = {  // taken out  for now
+  /* const assignmentGroup = {  // taken out  for now
     "id": 1,
     "name": "Homework",
     "course_id": 1,
@@ -18,7 +18,7 @@ const courseInfo = {
       },
    
     ],
-  };
+  }; */
 
   const learnerSubmissions = [
     {
@@ -163,7 +163,14 @@ const courseInfo = {
         },
       ];
 
+      function getLearnerData(course, assignmentGroup, submissions) {
+        // Validate course assignment group
+        if (assignmentGroup.course_id !== course.id) {
+          throw new Error("Invalid input: Assignment group does not belong to the specified course.");
+        }
       
+
+
       
       
 
