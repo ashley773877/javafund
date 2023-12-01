@@ -44,14 +44,15 @@ const courseInfo = {
         const learnerId = submission.learner_id;
         const assignmentId = submission.assignment_id;
         
-        // Find the assignment in the assignment group
+        
         const assignment = assignmentGroup.assignments.find(a => a.id === assignmentId);
     
         if (!assignment) {
           console.error(`Assignment with ID ${assignmentId} not found in the assignment group.`);
-          continue; // Skip this submission
+          continue; 
         }
-    
+        const dueDate = new Date(assignment.due_at);
+        const currentDate = new Date();
 
 
 
