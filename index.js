@@ -93,5 +93,8 @@ const courseInfo = {
         console.error(error.message);
       }
 
+      //section 2
+      
+
 
 
