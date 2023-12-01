@@ -4,7 +4,7 @@ const courseInfo = {
     "name": "Computer Science 101",
   };
 
-  const assignmentGroup = {
+  const assignmentGroup = {  // taken out  for now
     "id": 1,
     "name": "Homework",
     "course_id": 1,
@@ -94,7 +94,77 @@ const courseInfo = {
       }
 
       //section 2
+      const course = {
+        id: 1,
+        name: "Code the World",
+      };
       
+      const assignmentGroup = {
+        id: 1,
+        name: "Homework",
+        course_id: 1,
+        group_weight: 30,
+        assignments: [
+          {
+            id: 1,
+            name: "Assignment 1",
+            due_at: "3156-11-15",
+            points_possible: 50,
+          },
+          {
+            id: 2,
+            name: "Assignment 2",
+            due_at: "3156-11-22",
+            points_possible: 150,
+          },
+        ],
+      };
+      
+      const submissions = [
+        {
+          learner_id: 125,
+          assignment_id: 1,
+          submission: {
+            submitted_at: "2023-01-25",
+            score: 47,
+          },
+        },
+        {
+          learner_id: 125,
+          assignment_id: 2,
+          submission: {
+            submitted_at: "2023-02-12",
+            score: 150,
+          },
+        },
+        {
+          learner_id: 125,
+          assignment_id: 3,
+          submission: {
+            submitted_at: "2023-01-25",
+            score: 400,
+          },
+        },
+        {
+          learner_id: 132,
+          assignment_id: 1,
+          submission: {
+            submitted_at: "2023-01-24",
+            score: 39,
+          },
+        },
+        {
+          learner_id: 132,
+          assignment_id: 2,
+          submission: {
+            submitted_at: "2023-03-07",
+            score: 140,
+          },
+        },
+      ];
 
+      
+      
+      
 
 
